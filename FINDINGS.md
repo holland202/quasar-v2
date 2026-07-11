@@ -82,3 +82,23 @@ earn its parameters); interpretability = tomograph the dictionary atoms +
 read the mixture weights. Plus Q-SEED: camera shot-noise entropy
 (quantum-optical, Sanguinetti et al. PRX 2014 precedent) via termux-api
 to physically seed the generator, with min-entropy estimation.
+
+## F6 — LUCID v1: in-context channel inference CONFIRMED; aggregate win open (2026-07-12)
+Mixture of K=6 channel atoms, causal Bures-evidence gating (lucid_v1.py).
+R2 CONFIRMED: gate entropy collapses 1.79 -> 0.43 after ONE observed
+transition; mixture beats single channel at every position >=1 (0.028 vs
+0.042 at t=5, -33%). The in-context capability the transformer lacked (F4)
+exists in a channel dictionary with ~55 params. R1 OPEN: average holdout
+(0.0695 / 0.0625 with learnable prior / 0.0691 with seeded aggregate atom)
+loses to single-channel 0.0566 purely at position 0 — cold-start credit
+assignment: prior gradients flow only through 1/6 of loss terms; even the
+seeded aggregate atom drifts. Next attacks: position-weighted prior loss,
+or hierarchical confidence gate (aggregate fallback outside the softmax).
+Oracle ceiling: 0.0000 (true per-trajectory channel) — large headroom.
+
+## VERA — unification thesis (registered)
+Refound, don't merge: VERA = LUCID substrate + QUASAR knowledge loop +
+conformal uncertainty (SENTINEL lineage) + Veritas thermal governance +
+SIC/VEST provenance. Integration milestones I1-I4 in repo docs; each ships
+only behind a finding. Leave-behind: QOLAS LLM backbone (never trained),
+SKN prototype, demo theater.
