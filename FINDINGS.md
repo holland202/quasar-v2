@@ -62,3 +62,23 @@ residual width (d_model=3) and attention depth, NOT d_ff. M2 redefined:
 depth sweep (stacked blocks) + multi-qubit d_model, both cheap post-M1.
 External doc scorecard: strategies 1,2,4,5 broken/obsolete/premature;
 strategy 3 tested and refuted at this scale.
+
+## F5 — LUCID v0: channel layers, emergent CPTP, purity-preserving learning (2026-07-12)
+A 9-param Bloch-map layer (lucid_v0.py/v0b.py), same data/budget as F4.
+(1) EMERGENT PHYSICALITY: learned map is genuinely CPTP (Choi min eig
++0.031) with nothing enforcing it; random-matrix control -0.458.
+(2) BEATS THE TRANSFORMER: holdout Bures^2 0.0566 vs 0.1464 for the
+135-param QGT on identical data — explains F2 (the QGT only ever needed
+the per-position map, and learned it worse).
+(3) LOSS GEOMETRY DETERMINES THE LEARNED AGGREGATE: closed-form mean
+channel is depolarizing with s=0.7960 (MC-confirmed 0.7956). MSE training
+converges there (diag 0.808; scan eta*_MSE=0.795). Bures training instead
+converges to the purity-preserving contraction (diag 0.925-0.93; scan
+eta*_Bures=0.925). New quantitative result: Bures learning preserves
+purity statistics; Euclidean learning averages directions.
+Next: LUCID v1 — mixture-of-channels with Bures-attention gating for
+per-trajectory channel INFERENCE (must beat the single-channel 0.0566 to
+earn its parameters); interpretability = tomograph the dictionary atoms +
+read the mixture weights. Plus Q-SEED: camera shot-noise entropy
+(quantum-optical, Sanguinetti et al. PRX 2014 precedent) via termux-api
+to physically seed the generator, with min-entropy estimation.
