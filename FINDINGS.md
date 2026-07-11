@@ -102,3 +102,27 @@ conformal uncertainty (SENTINEL lineage) + Veritas thermal governance +
 SIC/VEST provenance. Integration milestones I1-I4 in repo docs; each ships
 only behind a finding. Leave-behind: QOLAS LLM backbone (never trained),
 SKN prototype, demo theater.
+
+## F7 — VERA I1: conformal certificates VERIFIED; gate power curve (2026-07-12)
+Per-position split conformal on LUCID v1.1, nonconformity = Bures distance.
+I1-a: first run missed registered band [0.87,0.93] at ONE position by
+0.002 (0.932, n_cal=300) — consistent with conditional-coverage variance
+(sd~1.7%). High-power rerun (n_cal=1000, n_test=2000): ALL positions in
+band, 0.904-0.929, mean 0.914. VERIFIED.
+I1-b VERIFIED: certified radius contracts 0.531 -> 0.284 along the
+sequence — in-context inference now carries a coverage guarantee.
+I1-c VERIFIED: shifted physics (w in [1.3,2.0]) collapses coverage to
+0.394 — the certificate can fail, hence is informative.
+VERA GATE (SECP Sentinel refounded on certificates): mean-score detector
+FAILED registered TPR>=0.80 (0.682); diagnosis — the mixture partially
+ADAPTS to OOD physics in-context (shifted coverage rises 0.31->0.48 with
+position), camouflaging late positions. Adaptation-detection tension:
+noted as a general safety observation for adaptive systems. Max-exceedance
+detector (any position breaching its certified radius): FPR 0.091, power
+curve monotone in shift magnitude: 0.583/0.730/0.790/0.860/0.892 for
+w-bands [1.25-1.4]..[2.0-2.5]. Single-number TPR claim was ill-posed;
+the power curve is the correct characterization. SECP components adopted
+into VERA: Sentinel gate pattern (certificate-fed), hash-chain audit,
+rollback; SECP's formal-verification/Byzantine claims left behind until
+run. VERA layer status: Substrate F5 / Knowledge C1-C2 / Uncertainty F7 /
+Governance+Provenance pending (I2 needs S25 sysfs; I4 SIC/VEST port).
