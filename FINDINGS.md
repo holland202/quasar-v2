@@ -38,3 +38,27 @@ example of the trap; broadcast_probe.py is the corrected instrument.
 Release rule: nothing leaves this repo until its claims pass the v0.1
 verification standard (floor, ceiling where provable, matched-budget
 control, held-out data).
+
+## F3 — M1 COMPLETE: analytical backprop, 633x speedup (2026-07-11)
+Micro reverse-mode AD engine (backprop.py), fused geometric primitives,
+shares model parameter arrays. V1 forward equivalence 5.6e-17; V2 gradient
+vs central finite differences across all 135 params, worst abs 8.4e-11;
+V3 633x per-step speedup (428ms -> 0.7ms), grows with param count;
+V4 training decreases loss. Bug caught by V1: loss is mean SQUARED Bures
+distance — initial reimplementation omitted the square (0.245 discrepancy,
+flagged instantly). M2 (capacity scale-up + C3 retest) is unblocked.
+
+## F4 — Articulation refuted at single-qubit scale; bottleneck localized (2026-07-11)
+External proposal (adapted): auxiliary head predicting generating physics
+(axis, w, g). Geometry says the task needs >=3 integrated positions.
+Matched-budget experiment (m3_articulation.py, 400 steps/arm, 0.8s total):
+P-A broadcast unchanged (0.0007); P-B no state-prediction gain (0.1464 vs
+0.1471); physics head AT predict-mean floor (0.2224 vs 0.2191) — learned
+nothing. Diagnosis test (m3b): 12-dim readout ALSO at floor -> readout-
+bottleneck hypothesis refuted. Localized cause: all cross-position info
+transits ONE 3-dim linear attention mix; cannot carry >=6 numbers of
+relational structure. Converges with C3 + F2: the binding constraint is
+residual width (d_model=3) and attention depth, NOT d_ff. M2 redefined:
+depth sweep (stacked blocks) + multi-qubit d_model, both cheap post-M1.
+External doc scorecard: strategies 1,2,4,5 broken/obsolete/premature;
+strategy 3 tested and refuted at this scale.
