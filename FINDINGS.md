@@ -234,3 +234,39 @@ gets STRICTLY BETTER (-0.00004). Small magnitude, but the SIGN is the
 result: enforcing physicality costs nothing and pays. CP is not a tax on
 the learner; it is free information. Physicality: checksum (F9) ->
 regularizer (F12).
+
+## F3 AMENDMENT — speedup restated honestly (2026-07-12)
+The "633x" autodiff speedup was ONE wall-clock sample quoted to three
+significant figures. Repeated runs: 597 / 633 / 657 / 665 / 680x. Honest
+claim: ~600-680x, load- and machine-dependent. Correctness figures
+(5.6e-17 forward, 8.4e-11 gradients) are exact and stand unchanged.
+
+## F14 — N1: CP projection is a DATA-SCARCITY regularizer (2026-07-12)
+Registered follow-on to F12. Project the Bloch map onto the CP cone after
+EVERY gradient step; matched init, data stream, lr, steps; 8 paired seeds
+(both init AND data vary per seed — an earlier version varied only the
+init, caught by an implausible std of exactly 0.00000 across "independent"
+runs).
+N1-0 ANTI-VACUITY (F1 rule) PASSES: the control genuinely leaves the CP
+cone (23% / 69% / 46% of steps across regimes), so projection is not a
+no-op and a win is attributable.
+RESULTS (paired delta, holdout Bures^2):
+  standard   (400 steps, bs=8) : -0.00001, 6/8 wins -> NOT ESTABLISHED
+  low-data   (120 steps, bs=2) : -0.00114, 8/8 wins -> PASS
+  aggressive (lr=0.5)          : -0.00013, 7/8 wins -> PASS
+N1-c REFUTED as registered: the effect does NOT track how hard the
+constraint binds (aggressive binds 46% and gains ~nothing; low-data binds
+69% and gains most). The controlling variable is DATA SCARCITY.
+STATEMENT: CP projection is a free regularizer that helps exactly where
+regularizers help — scarce data, noisy optimizer. At convergence with
+abundant data the learner reaches the cone unaided (F5) and projection is
+a no-op. Physicality: checksum (F9) -> post-hoc regularizer (F12) ->
+in-training regularizer, conditionally (F14).
+
+## F13 (in progress) — device thermal calibration
+Cause of the failed live run: max() over ALL sysfs zones. The S25 exposes
+68; modem/battery/skin zones idle at 60C, so a 42C envelope (tuned on the
+synthetic RC model) pauses forever. The governor was CORRECT and
+MISCALIBRATED. Fix: --zones discovery (name + temp), single-zone
+selection, and an envelope set relative to the MEASURED idle baseline
+(T_high = idle + delta). Awaiting on-device duty-cycle curve.
