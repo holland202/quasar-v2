@@ -191,3 +191,30 @@ restarts+split solves it completely; (c) PHYSICALITY AS CHECKSUM: Choi
 positivity of learned atoms tracked recovery quality through every run —
 the substrate certifies its own learning. Next: streaming/online EM,
 cold-start via aggregate-of-atoms at t=0, and R1(n=1) revisit with EM.
+
+## F9 — Dictionary learning: gradient gating fails, EM recovers everything (2026-07-12)
+Five controlled runs (m2q_*.py), each failure diagnosed into the next:
+(1) TRAINED mixture, continuous ensemble: COLLAPSE — gate entropy 0.00
+from t=1, t>=1 errors equal the single channel to 3 decimals; winner-
+take-all starves all but the aggregate atom. TR-2 held (0.151->0.063).
+(2) Finite ensemble (8 true channels): SYMMETRY NON-BREAKING — atoms
+never differentiate (recovery ~1.96 from floor 3.64, ID 0.109 ~ chance);
+uniform gates give every atom the same aggregate-pull gradient.
+(3) Data-driven init (per-atom single-trajectory ridge): still fails
+(ID 0.203) — one trajectory spans only ~5 of 15 dims, so seeded atoms
+cannot route other trajectories of their own channel.
+(4) EM (closed-form ridge M-step): DR-2 PASSES partially — four channels
+recovered to 0.05-0.31 Frobenius (their Choi eigs +0.007/+0.008: the
+recovered atoms ARE physical channels); two true-channel pairs merged
+(cluster sizes [3,46,95,2,110,53,43,48], classic local optimum).
+(5) EM + 10 restarts + split-merge: TOTAL RECOVERY — all 8 channels to
+mean 0.050 Frobenius; assignment accuracy 1.000/400; every atom CPTP
+(Choi +0.007..+0.013); EM-gated prediction 0.0295 vs global-LS 0.0793
+(2.7x), residual = t=0 cold start; oracle 0.
+Findings: (a) evidence GATING is solved (F8) but dictionary LEARNING via
+gated gradients is blocked by symmetry non-breaking — a channel-space
+demonstration of mixture-of-experts collapse; (b) closed-form EM with
+restarts+split solves it completely; (c) PHYSICALITY AS CHECKSUM: Choi
+positivity of learned atoms tracked recovery quality through every run —
+the substrate certifies its own learning. Next: streaming/online EM,
+cold-start via aggregate-of-atoms at t=0, and R1(n=1) revisit with EM.
