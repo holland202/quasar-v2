@@ -270,3 +270,51 @@ synthetic RC model) pauses forever. The governor was CORRECT and
 MISCALIBRATED. Fix: --zones discovery (name + temp), single-zone
 selection, and an envelope set relative to the MEASURED idle baseline
 (T_high = idle + delta). Awaiting on-device duty-cycle curve.
+
+## F15 — N7: VERA SURVIVES REAL TOMOGRAPHY (2026-07-13)
+The program's largest gap, closed. Exact Bloch vectors replaced with
+simulated finite-shot Pauli tomography (binomial outcomes, error ~1/sqrt(S)).
+N7-0 anti-vacuity PASS: noise degrades the pipeline (S=32 holdout 0.121 vs
+exact 0.058).
+N7-a REGISTERED CLAIM WAS ILL-POSED and is rewritten: "recovery" matched
+noisy-EM atoms to exact-EM atoms, but BOTH carry clustering noise, so the
+metric saturates (~S^-0.04) and cannot see convergence. Same failure class
+as F7's withdrawn single-number TPR. Correct metric = holdout vs the
+exact-data baseline: 2.06x at S=32 -> 1.25x at 128 -> 1.03x at 1024 ->
+1.00x at 4096. GRACEFUL, MONOTONE, converged by ~1024 shots.
+N7-b: raw EM atoms are slightly non-physical at EVERY shot count INCLUDING
+EXACT (quantization artifact, F12 — not a noise artifact). CP projection
+(F14) repairs them at every S: worst Choi -0.070 -> -0.000.
+N7-c HEADLINE: CONFORMAL COVERAGE HOLDS AT EVERY SHOT COUNT (0.891-0.923,
+nominal 0.90) EVEN WHERE THE MODEL IS TWICE AS BAD. The guarantee is
+distribution-free; the certificates simply WIDEN. VERA's uncertainty layer
+is real-world-ready even when every other layer degrades.
+N7-d: 31% of raw estimated states land OUTSIDE the Bloch ball at S=32 and
+STILL 10% at S=4096 (pure states sit ON the ball; noise pushes half out).
+On real data physicality is an OPERATION, not merely an audit.
+
+## F16 — N2: THE C3 PREDICTION IS REFUTED; error-driven curricula are
+## ACTIVELY HARMFUL; progress-driven curricula work (2026-07-13)
+C3/F4 diagnosed the tied curriculum as flat competence and predicted
+adaptive sampling would WIN once the learner could specialize. FALSIFIED.
+N2-0 anti-vacuity PASS: at n=2 with 225 params competence is strongly
+uneven (per-bin error 0.052 -> 0.346, spread 0.56). The learner CAN
+specialize; the sampler DID reallocate (weights 0.059 -> 0.368, L1 0.46).
+N2-a/b FAIL: error-proportional sampling is 8.08% WORSE than uniform,
+losing 0/5 seeds (0.20595 +- 0.00179 vs 0.19056 +- 0.00264).
+MECHANISM (the finding): corr(final error, LEARNABILITY) = -0.999. The
+easiest bin had 87.2% of its error reducible; the hardest, 14.8%. ERROR
+DOES NOT TRACK LEARNABILITY — error-driven sampling pours the budget into
+precisely the bin where learning is least possible. Hard != learnable.
+N2'-a/b PASS: PROGRESS-proportional sampling (weights ~ recent error
+REDUCTION) beats uniform by +3.30%, winning 5/5 seeds (0.18428 +- 0.00249),
+and beats error-proportional by 12.5%. Its weights genuinely deviate
+(L1 up to 1.17) and it DISCOVERS an easy-to-hard schedule unprompted
+(early weights 0.276 -> 0.121), relaxing to uniform as progress equalizes.
+PRIOR ART, stated honestly: learning-progress as a curriculum signal is
+known (Graves et al., Automated Curriculum Learning, 2017). What is new
+here is the mechanism measured cleanly in channel space at corr = -0.999.
+CONSEQUENCE: the QUASAR loop's error-driven curriculum is WRONG BY DESIGN
+and must be replaced with a progress-driven one. This retro-explains C3:
+the tie was luck — a flat-competence learner cannot be harmed by a bad
+signal. Give it capacity and the bad signal HURTS.
