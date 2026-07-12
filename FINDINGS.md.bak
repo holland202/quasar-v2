@@ -192,6 +192,33 @@ positivity of learned atoms tracked recovery quality through every run —
 the substrate certifies its own learning. Next: streaming/online EM,
 cold-start via aggregate-of-atoms at t=0, and R1(n=1) revisit with EM.
 
+## F9 — Dictionary learning: gradient gating fails, EM recovers everything (2026-07-12)
+Five controlled runs (m2q_*.py), each failure diagnosed into the next:
+(1) TRAINED mixture, continuous ensemble: COLLAPSE — gate entropy 0.00
+from t=1, t>=1 errors equal the single channel to 3 decimals; winner-
+take-all starves all but the aggregate atom. TR-2 held (0.151->0.063).
+(2) Finite ensemble (8 true channels): SYMMETRY NON-BREAKING — atoms
+never differentiate (recovery ~1.96 from floor 3.64, ID 0.109 ~ chance);
+uniform gates give every atom the same aggregate-pull gradient.
+(3) Data-driven init (per-atom single-trajectory ridge): still fails
+(ID 0.203) — one trajectory spans only ~5 of 15 dims, so seeded atoms
+cannot route other trajectories of their own channel.
+(4) EM (closed-form ridge M-step): DR-2 PASSES partially — four channels
+recovered to 0.05-0.31 Frobenius (their Choi eigs +0.007/+0.008: the
+recovered atoms ARE physical channels); two true-channel pairs merged
+(cluster sizes [3,46,95,2,110,53,43,48], classic local optimum).
+(5) EM + 10 restarts + split-merge: TOTAL RECOVERY — all 8 channels to
+mean 0.050 Frobenius; assignment accuracy 1.000/400; every atom CPTP
+(Choi +0.007..+0.013); EM-gated prediction 0.0295 vs global-LS 0.0793
+(2.7x), residual = t=0 cold start; oracle 0.
+Findings: (a) evidence GATING is solved (F8) but dictionary LEARNING via
+gated gradients is blocked by symmetry non-breaking — a channel-space
+demonstration of mixture-of-experts collapse; (b) closed-form EM with
+restarts+split solves it completely; (c) PHYSICALITY AS CHECKSUM: Choi
+positivity of learned atoms tracked recovery quality through every run —
+the substrate certifies its own learning. Next: streaming/online EM,
+cold-start via aggregate-of-atoms at t=0, and R1(n=1) revisit with EM.
+
 ## F10 note — QSLEUTH v0.1 released public (2026-07-12)
 F9's recovery machinery productized: K-discovery (validation-residual +
 ghost-prune + duplicate-merge), EM recovery, Choi certification,
@@ -216,7 +243,23 @@ Anti-theater: SysfsThermal FAILS LOUD without real sensors (the QOLAS
 `except: return 45.0` pattern is a governor that cooks the machine while
 reporting safe). I2 sandbox half DONE; live half still needs S25 sysfs.
 
-## F12 — R1 CLOSED: EM dictionary + aggregate cold-start; physicality is a REGULARIZER, not just a checksum (2026-07-12)
+## F11 — VERITAS RUNTIME v0: VERA Governance layer, runnable (2026-07-12)
+SLC/Veritas thermal governor + SECP Sentinel + hash-chain audit + self-
+healing rollback, wrapped around real LUCID Bures training. V1-V4 ALL
+PASS: envelope held 42.1C vs ungoverned 50.0C; converges at 50% duty
+(0.302->0.056); gradient bomb (x1e6 @ step 250) detected and recovered to
+0.056 — IDENTICAL to the clean run; audit tamper-detected.
+BUG CAUGHT BY V3: the first guard checkpointed AFTER the update and judged
+on the PRE-update loss, so it snapshotted the poisoned weights and every
+rollback restored TO the poison (0.826). RULE: never checkpoint state you
+have not verified. Fix = forward-only PROBE on fixed holdout, judged post-
+update; rollback on probe divergence; checkpoint verified state only.
+Anti-theater: SysfsThermal FAILS LOUD without real sensors (cf. QOLAS
+`except: return 45.0` — a governor that cooks the machine while reporting
+safe). I2 sandbox half DONE; live half needs S25 sysfs.
+
+## F12 — R1 CLOSED: EM dictionary + aggregate cold-start; physicality is a
+## REGULARIZER, not just a checksum (2026-07-12)
 The oldest open claim (F6 R1) is dead. n=1, CONTINUOUS ensemble (K atoms
 must quantize a continuum — the hard case, unlike F9's finite set).
 R1-a PASS: EM (K=12, 8 restarts, starve-split) + causal Bures gating, with
