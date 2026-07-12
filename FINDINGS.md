@@ -218,3 +218,11 @@ restarts+split solves it completely; (c) PHYSICALITY AS CHECKSUM: Choi
 positivity of learned atoms tracked recovery quality through every run —
 the substrate certifies its own learning. Next: streaming/online EM,
 cold-start via aggregate-of-atoms at t=0, and R1(n=1) revisit with EM.
+
+## F10 note — QSLEUTH v0.1 released public (2026-07-12)
+F9's recovery machinery productized: K-discovery (validation-residual +
+ghost-prune + duplicate-merge), EM recovery, Choi certification,
+entanglement witness, conformal coverage, intruder gate, hash-chain
+audit. 9/9 registered self-tests. Two pre-release bugs caught by the
+tests themselves (Choi transpose, mismatched-index seed) — documented.
+Public timestamp: github.com/holland202/qsleuth.
