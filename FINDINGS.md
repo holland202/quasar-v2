@@ -226,3 +226,19 @@ entanglement witness, conformal coverage, intruder gate, hash-chain
 audit. 9/9 registered self-tests. Two pre-release bugs caught by the
 tests themselves (Choi transpose, mismatched-index seed) — documented.
 Public timestamp: github.com/holland202/qsleuth.
+
+## F11 — VERITAS RUNTIME v0: VERA Governance layer, runnable (2026-07-12)
+Fusion of verified cores (SLC/Veritas thermal governor, SECP Sentinel +
+hash-chain audit, self-healing rollback) wrapped around real LUCID Bures
+training. Sandbox claims V1-V4 ALL PASS: thermal envelope held (42.1C vs
+ungoverned 50.0C on the same RC model); converges under 50% duty cycle
+(0.302 -> 0.056); gradient bomb (x1e6 @ step 250) detected and recovered
+to 0.056 — IDENTICAL to the clean run; audit chain tamper-detected.
+BUG CAUGHT BY V3: first guard checkpointed AFTER the update and judged on
+the PRE-update loss -> it snapshotted the poisoned weights and every
+rollback restored TO the poison (0.826). Rule: never checkpoint state you
+have not verified. Fix = forward-only PROBE on fixed holdout, judged
+post-update; rollback on probe divergence; checkpoint verified state only.
+Anti-theater: SysfsThermal FAILS LOUD without real sensors (the QOLAS
+`except: return 45.0` pattern is a governor that cooks the machine while
+reporting safe). I2 sandbox half DONE; live half still needs S25 sysfs.
