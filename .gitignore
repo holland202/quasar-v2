@@ -1,3 +1,5 @@
 __pycache__/
 *.pyc
 *.png
+*.bak
+__pycache__/
