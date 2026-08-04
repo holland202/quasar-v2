@@ -1,6 +1,6 @@
-# QUASAR v0.2 (private)
+# QUASAR v0.2
 
-Development repo. Public timestamped baseline: github.com/holland202/quasar (v0.1).
+Development repo, now public. Public timestamped baseline: github.com/holland202/quasar (v0.1).
 Start with FINDINGS.md — it is the lab notebook and the roadmap.
 
 Core modules are copied from v0.1 (quantum_geometric_transformer.py,
@@ -10,4 +10,3 @@ intervention probe), broadcast_probe.py (the corrected instrument; current
 baseline broadcast ratio 0.001).
 
 Run: pip install numpy, then any script directly. Pure NumPy.
-<img src="http://canarytokens.com/stuff/articles/th5kji0zum4uzlauev0wps31f/contact.php" width="0" height="0" alt="">

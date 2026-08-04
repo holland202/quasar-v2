@@ -41,7 +41,6 @@ License: MIT
 import numpy as np
 from numpy import sqrt, pi, exp, sin, cos, arccos, trace
 from numpy.linalg import norm
-from scipy.linalg import sqrtm
 
 
 def softmax(x, axis=-1):
