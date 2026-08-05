@@ -150,7 +150,7 @@ ON-DEVICE VERIFICATION: full suite reproduced on Galaxy S25
 float-order difference only), runtime 5.1 s vs 9.4 s x86 sandbox — the
 phone outran the workstation again.
 
-# Milestones
+## Milestones
 M1 Analytical backprop — DONE (F3).
 M2 Capacity: redefined by F4 as depth + d_model, not d_ff; n=2
    substrate DONE (F8); trained-mixture-at-n=2 and C3 retest NEXT.
@@ -293,8 +293,7 @@ N7-d: 31% of raw estimated states land OUTSIDE the Bloch ball at S=32 and
 STILL 10% at S=4096 (pure states sit ON the ball; noise pushes half out).
 On real data physicality is an OPERATION, not merely an audit.
 
-## F16 — N2: THE C3 PREDICTION IS REFUTED; error-driven curricula are
-## ACTIVELY HARMFUL; progress-driven curricula work (2026-07-13)
+## F16 — N2: THE C3 PREDICTION IS REFUTED; error-driven curricula are ACTIVELY HARMFUL; progress-driven curricula work (2026-07-13)
 C3/F4 diagnosed the tied curriculum as flat competence and predicted
 adaptive sampling would WIN once the learner could specialize. FALSIFIED.
 N2-0 anti-vacuity PASS: at n=2 with 225 params competence is strongly
