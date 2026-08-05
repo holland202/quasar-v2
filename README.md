@@ -1,3 +1,5 @@
+![QUASAR v0.2](assets/quasar_v2_card.png)
+
 > ## Start here
 >
 > **QUASAR v0.2** — Bures-metric geometry applied to single-qubit AI learning. Every claim carries a numbered prediction, registered before the code runs. Failed predictions are kept and marked, not deleted — [FINDINGS.md](FINDINGS.md) is the lab notebook: 16 entries (F1–F16), two of them headline refutations kept in full.

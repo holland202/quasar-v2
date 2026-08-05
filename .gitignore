@@ -3,3 +3,6 @@ __pycache__/
 *.png
 *.bak
 __pycache__/
+
+# social card is a tracked asset, not a generated figure
+!assets/*.png
