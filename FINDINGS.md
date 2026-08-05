@@ -343,3 +343,43 @@ q90 0.6298, q99 0.8052, breach 30.3%/54.5%, coverage 0.697, F1 0.437, all four
 verdicts identical. Code: github.com/holland202/sentinel-batadal-validation,
 vera_batadal.py. NEXT: EM dynamics dictionary (F9/F12 machinery, multi-mode),
 drift-aware calibration for P1, and the official S score.
+
+## F18 — THE FOUNDING PREMISE IS REFUTED: Bures attention does not beat dot-product (2026-08-05)
+
+The QGT header has claimed since v0.1 that Bures-metric attention replaces
+dot-product attention. F1-F17 never registered that comparison. F18 runs it.
+Two arms identical in parameter shapes, init (same seed draws the same
+matrices), data stream, optimizer, LR, batch and step count; ONLY the
+attention score differs. GEO = -beta*arccos(sqrt(F)) on the fidelity angle;
+DOT = scaled dot-product. Task: in-context dynamics prediction, one physical
+channel per seed (gamma * unitary conjugation, CP by construction), holdout
+on unseen initial states. Floors: predict-mixed and predict-last. Registered
+before running.
+P0 ANTI-VACUITY PASS: both arms beat both floors at both dimensions, so the
+task is learnable and the comparison is informative.
+P1 REFUTED (kept): at n=1, GEO beat DOT by >2% in 0 of 5 seeds; mean relative
+gap +0.0007.
+P2 REFUTED (kept): at n=2 (15-dim, superfidelity), 0 of 5 seeds; mean +0.0003.
+P3 REFUTED (kept): the gap did not grow with dimension (+0.0003 at n=2 vs
++0.0007 at n=1).
+STATEMENT: at matched budget on this task the metric is worth a rounding
+error. The geometry is not buying what the architecture claimed.
+SCOPE, stated so the refutation is not overread: with one channel per seed the
+FFN and head can learn the map alone and attention need not carry information
+(n=1 lands near the oracle, 0.000068 vs floor 0.0679), consistent with
+attention being a passthrough for BOTH arms. This does not rescue the claim -
+it says the claim was never tested where it could matter. F2 measured the same
+thing (broadcast ratio 0.001) and F4 localized it (one 3-dim linear mix).
+HARNESS BUG CAUGHT AND KEPT: the generalized fidelity first used
+(cap + c.d + s)/denom; the correct superfidelity constant is 1 at both
+dimensions. At n=2 the wrong constant forced F == 1, distance == 0, zero
+gradient - the n=2 arm trained nothing and its zeros were fake. H1-H3 could
+not catch it (cap=1 masks it at n=1; finite differences verified the wrong
+formula self-consistently). H6 added: generalized F checked against
+superfidelity computed independently from raw density matrices, tol 1e-10.
+The instrument contained the defect class it was built to find - same lesson
+as F1, F8 T4, and arch_map P10b.
+P4 (n=3, 63-dim) deliberately left unrun.
+REPRODUCTION: Galaxy S25 (aarch64/Termux) matches the container digit for
+digit - +0.0007, +0.0003, 0/5 both dims, all four verdicts identical.
+Code: f18_bures_vs_dot.py, predictions in F18_PREREG.md.
