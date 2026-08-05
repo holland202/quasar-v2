@@ -317,3 +317,29 @@ CONSEQUENCE: the QUASAR loop's error-driven curriculum is WRONG BY DESIGN
 and must be replaced with a progress-driven one. This retro-explains C3:
 the tie was luck — a flat-competence learner cannot be harmed by a bad
 signal. Give it capacity and the bad signal HURTS.
+
+## F17 — VERA TRANSFERS OFF THE BLOCH BALL: certificates on real SCADA data (2026-08-04)
+
+First application of the F7/F15 certificate layer to data this program did not
+generate. Target: BATADAL, the public water-distribution attack benchmark
+(Taormina et al. 2018), 43 standardized channels, 2,089 test records, 407
+attack ticks. Method: ridge dynamics x_(t+1) = A x_t + b in place of the Bloch
+map, split conformal on clean dataset03 (60/40 temporal), attacks flagged as
+certificate breaches. Predictions registered before the first run.
+P0 ANTI-VACUITY PASS: attack ticks breach the 90% certificate at 54.5% vs 30.3%
+for clean ticks — the instrument separates, so the run is informative.
+P1 REFUTED (kept): clean-test coverage 0.697 against nominal 0.90. This is F7
+I1-c appearing on real infrastructure — the certificate did not fail, it
+reported that the plant drifted between the calibration year and the test year.
+The guarantee is distribution-free per split, not across a distribution shift.
+P2 REFUTED (kept): attack-to-clean exceedance 1.8x against a registered 3x.
+P3: tick F1 0.437 at the 99% certificate. HONEST SCOPE: tick-level only, no
+episode detection, no TTD, and NOT scored on BATADAL S — the benchmark ranks on
+S, not F1, so this number does not rank the method against any published entry.
+Until it runs through batadal_score.py it is an experiment, not a benchmark
+result.
+REPRODUCTION: digit-for-digit on the Galaxy S25 (aarch64/Termux) and x86 —
+q90 0.6298, q99 0.8052, breach 30.3%/54.5%, coverage 0.697, F1 0.437, all four
+verdicts identical. Code: github.com/holland202/sentinel-batadal-validation,
+vera_batadal.py. NEXT: EM dynamics dictionary (F9/F12 machinery, multi-mode),
+drift-aware calibration for P1, and the official S score.
