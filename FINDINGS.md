@@ -1,4 +1,4 @@
-# QUASAR v0.2 — Findings Log (private)
+# QUASAR v0.2 — Findings Log
 
 Every entry: claim, method, number, status. Newest last.
 LEDGER INTEGRITY NOTE (2026-07-12): the on-device FINDINGS.md was
