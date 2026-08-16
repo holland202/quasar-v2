@@ -15,6 +15,7 @@ REGISTERED:
   N2'-b  It also beats the error-proportional curriculum.
 Same learner, same budget, same init, same holdout as N2.
 """
+import os
 import numpy as np
 import lucid2q as L2
 from backprop import T, matmul, bures_mean_loss
@@ -73,5 +74,5 @@ print(f"\nN2'-a progress beats uniform by > 1%: {(eu-ep)/eu > 0.01}  "
       f"({100*(eu-ep)/eu:+.2f}%)")
 print(f"N2'-b progress beats error-proportional: {ep < ea}  "
       f"({100*(ea-ep)/ea:+.2f}%)")
-np.save("/tmp/n2b.npy", np.array([e_init, e_final, learn, wa, wp,
+np.save(os.path.join(os.environ.get("TMPDIR", "/tmp"), "n2b.npy"), np.array([e_init, e_final, learn, wa, wp,
                                   [eu, ea, ep, 0, 0]]))

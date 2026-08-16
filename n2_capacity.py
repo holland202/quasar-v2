@@ -20,6 +20,7 @@ REGISTERED:
 Floor: uniform sampling at equal budget. Both arms: identical init, same
 number of gradient steps, same batch size, same optimizer.
 """
+import os
 import numpy as np
 import lucid2q as L2                      # runs T1-T6 on import (verified)
 from backprop import T, matmul, bures_mean_loss
@@ -109,4 +110,4 @@ print(f"N2-b C3 prediction direction confirmed (adaptive >= uniform): "
       f"{ha_m <= hu_m}")
 print(f"\nC3 (135 params, n=1) was: TIED (-0.3%).  N2 (225 params, n=2) "
       f"is: {100*rel:+.2f}%")
-np.save("/tmp/n2.npy", np.array([eu, ea, wa]))
+np.save(os.path.join(os.environ.get("TMPDIR", "/tmp"), "n2.npy"), np.array([eu, ea, wa]))
